@@ -24,6 +24,7 @@
     from mmall_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_user
     where id = #{id,jdbcType=INTEGER}
@@ -151,4 +152,17 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="checkUsername" resultType="java.lang.Integer" parameterType="string">
+    select count(1) from mmall_user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    select
+    --- 要什么查什么
+    <include refid="Base_Column_List" />
+    from mmall_user
+    where username = #{username,jdbcType=VARCHAR}
+    and password = #{password,jdbcType=VARCHAR}
+  </select>
 </mapper>
