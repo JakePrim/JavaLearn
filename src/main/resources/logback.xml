@@ -10,11 +10,11 @@
 		</filter>
 	</appender>
 
-	<appender name="primmall" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="mall" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<!--<File>d:/mmalllog/mmall.log</File>-->
-		<File>/Users/prim/apache-tomcat-7.0.93/logs/mmall.log</File>
+		<File>/Users/prim/apache-tomcat-7.0.93/logs/mall.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/developer/apache-tomcat-7.0.73/logs/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+			<fileNamePattern>/Users/prim/apache-tomcat-7.0.73/logs/mall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
 			<append>true</append>
 			<maxHistory>10</maxHistory>
 		</rollingPolicy>
@@ -43,8 +43,8 @@
 		</filter>
 	</appender>
 
-	<logger name="com.primmall" additivity="false" level="INFO" >
-		<appender-ref ref="primmall" />
+	<logger name="com.mall" additivity="false" level="INFO" >
+		<appender-ref ref="mall" />
 		<appender-ref ref="console"/>
 	</logger>
 
@@ -52,7 +52,7 @@
 
 	<!-- geelynote mybatis log 日志 -->
 
-	<logger name="com.primmall.dao" level="DEBUG"/>
+	<logger name="com.mall.dao" level="DEBUG"/>
 
 	<!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
 	<!--<appender-ref ref="console"/>-->
