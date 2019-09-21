@@ -25,11 +25,6 @@ public class UserController {
      * 用户登录请求
      * 请求:user/login.do post方式
      * ResponseBody 自动序列化json
-     *
-     * @param username
-     * @param password
-     * @param session
-     * @return
      */
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     @ResponseBody
@@ -45,9 +40,6 @@ public class UserController {
 
     /**
      * 退出登录
-     *
-     * @param session
-     * @return
      */
     @RequestMapping(value = "logout.do", method = RequestMethod.POST)
     @ResponseBody
@@ -58,9 +50,6 @@ public class UserController {
 
     /**
      * 用户注册
-     *
-     * @param user 通过对象进行包装
-     * @return
      */
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
@@ -70,10 +59,6 @@ public class UserController {
 
     /**
      * 校验用户注册信息
-     *
-     * @param str
-     * @param type
-     * @return
      */
     @RequestMapping(value = "check_valid.do", method = RequestMethod.POST)
     @ResponseBody
@@ -83,9 +68,6 @@ public class UserController {
 
     /**
      * 获取用户信息
-     *
-     * @param httpSession
-     * @return
      */
     @RequestMapping(value = "get_user_info.do", method = RequestMethod.POST)
     @ResponseBody
@@ -101,7 +83,6 @@ public class UserController {
      * 忘记密码问题提示
      *
      * @param username 根据用户名获取
-     * @return
      */
     @RequestMapping(value = "forget_get_question.do", method = RequestMethod.POST)
     @ResponseBody
@@ -111,11 +92,6 @@ public class UserController {
 
     /**
      * 校验忘记密码问题的回答
-     *
-     * @param username
-     * @param question
-     * @param answer
-     * @return
      */
     @RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
     @ResponseBody
@@ -125,11 +101,6 @@ public class UserController {
 
     /**
      * 忘记密码下的重置密码
-     *
-     * @param username
-     * @param newPassword
-     * @param token
-     * @return
      */
     @RequestMapping(value = "forget_rest_password.do", method = RequestMethod.POST)
     @ResponseBody
@@ -139,11 +110,6 @@ public class UserController {
 
     /**
      * 用户登录下的重置密码
-     *
-     * @param httpSession
-     * @param passwordOld
-     * @param passwordNew
-     * @return
      */
     @RequestMapping(value = "reset_password.do", method = RequestMethod.POST)
     @ResponseBody
@@ -157,9 +123,6 @@ public class UserController {
 
     /**
      * 更新用户信息
-     * @param session
-     * @param user
-     * @return
      */
     @RequestMapping(value = "update_information.do", method = RequestMethod.POST)
     @ResponseBody
@@ -171,7 +134,7 @@ public class UserController {
         //防止ID被变化
         user.setId(currUser.getId());
         user.setUsername(currUser.getUsername());
-        ServerResponse<User> response = iUserService.updateInfomation(user);
+        ServerResponse<User> response = iUserService.updateInformation(user);
         //注意更新成功后要更新session
         if (response.isSuccess()) {
             response.getData().setUsername(currUser.getUsername());
@@ -182,8 +145,6 @@ public class UserController {
 
     /**
      * 获取用户信息
-     * @param session
-     * @return
      */
     @RequestMapping(value = "get_information.do", method = RequestMethod.POST)
     @ResponseBody

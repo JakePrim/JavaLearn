@@ -34,9 +34,6 @@ public class ServerResponse<T> implements Serializable {
 
     /**
      * 注意与T 和 String 的问题
-     *
-     * @param status
-     * @param msg
      */
     private ServerResponse(int status, String msg) {
         this.status = status;
@@ -64,9 +61,6 @@ public class ServerResponse<T> implements Serializable {
 
     /**
      * 只返回status的成功请求
-     *
-     * @param <T>
-     * @return
      */
     public static <T> ServerResponse<T> createBySuccess() {
         return new ServerResponse<T>(ResponseCode.SUCCESS.getCode());
@@ -74,10 +68,6 @@ public class ServerResponse<T> implements Serializable {
 
     /**
      * 只返回status和msg的成功响应
-     *
-     * @param msg
-     * @param <T>
-     * @return
      */
     public static <T> ServerResponse<T> createBySuccessMessage(String msg) {
         return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(), msg);
