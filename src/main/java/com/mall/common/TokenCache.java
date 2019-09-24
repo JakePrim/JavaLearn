@@ -53,4 +53,13 @@ public class TokenCache {
         return null;
     }
 
+    public static void cleatToken(String key) {
+        loadingCache.put(key, null);
+    }
+
+    public static void cleatToken() {
+        loadingCache.cleanUp();
+    }
+
+
 }

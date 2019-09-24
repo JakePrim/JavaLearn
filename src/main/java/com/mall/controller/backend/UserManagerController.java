@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * 管理员登录
+ */
 @Controller
 @RequestMapping("/manager/user/")
 public class UserManagerController {

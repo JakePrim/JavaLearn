@@ -92,10 +92,11 @@ public class UserServiceImpl implements IUserService {
         }
         //用户名存在 从数据库中查找用户设置的问题
         String question = userMapper.queryQuestionUsername(username);
-        if (StringUtils.isNotBlank(question)) {
-            return ServerResponse.createByErrorMessage("密码提示问题不存在");
+        //如果问题不为空 则返回
+        if (StringUtils.isNoneBlank(question)) {
+            return ServerResponse.createBySuccess(question);
         }
-        return ServerResponse.createBySuccess(question);
+        return ServerResponse.createByErrorMessage("找回密码问题不存在");
     }
 
     @Override
@@ -113,9 +114,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServerResponse<String> forgetRestPassword(String username, String newPassword, String token) {
-        if (StringUtils.isNotBlank(token)) {
-            return ServerResponse.createByErrorMessage("参数错误，token必须要传递");
-        }
+
         ServerResponse<String> response = checkValid(username, Const.USERNAME);
         if (response.isSuccess()) {//用户名不存在
             return ServerResponse.createByErrorMessage("用户不存在");
@@ -130,6 +129,8 @@ public class UserServiceImpl implements IUserService {
             String md5Password = MD5Util.MD5EncodeUtf8(newPassword);
             int rowCount = userMapper.updatePasswordByUsername(username, md5Password);
             if (rowCount > 0) {
+                //密码设置成功后将token缓存清除
+                TokenCache.cleatToken(TokenCache.TOKEN_PREFIX + username);
                 return ServerResponse.createBySuccessMessage("修改密码成功");
             }
         } else {

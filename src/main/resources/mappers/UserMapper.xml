@@ -176,7 +176,7 @@
     </select>
 	<select id="queryQuestionUsername" resultType="java.lang.String" parameterType="string">
     select question from mmall_user
-    where username = #{username,jdbcType=VARCHAR}
+    where username = #{username}
   </select>
 	<select id="checkAnswer" resultType="java.lang.Integer" parameterType="map">
 		select count(1)
