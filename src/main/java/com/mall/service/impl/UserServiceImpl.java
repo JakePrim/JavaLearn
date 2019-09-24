@@ -162,6 +162,7 @@ public class UserServiceImpl implements IUserService {
         if (resultCount > 0) {
             return ServerResponse.createByErrorMessage("email已存在，请更换email在尝试更新");
         }
+        //phone 是否已经存在，如果存在且不是当前用户则不能修改
         User updateUser = new User();
         updateUser.setId(user.getId());
         updateUser.setEmail(user.getEmail());

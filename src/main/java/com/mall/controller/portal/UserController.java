@@ -137,7 +137,6 @@ public class UserController {
         ServerResponse<User> response = iUserService.updateInformation(user);
         //注意更新成功后要更新session
         if (response.isSuccess()) {
-            response.getData().setUsername(currUser.getUsername());
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
         return response;
